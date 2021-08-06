@@ -6,6 +6,7 @@ function cat(cmd, fileName) {
       if (err) {
         throw err;
         } else {
+          console.log(fileName)
           console.log(data)
           }
     }

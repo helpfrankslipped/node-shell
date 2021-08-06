@@ -1,17 +1,24 @@
-const pwd = require('./pwd.js');
-const ls = require('./ls.js');
-const cat = require('./cat.js')
+const pwd = require("./pwd.js");
+const ls = require("./ls.js");
+const cat = require("./cat.js");
 
 process.stdout.write("prompt > ");
 
 process.stdin.on("data", (data) => {
-  let input = data.toString().split(" ")
-  if(input.includes(' ')){
-    input = data
+  let input = data.toString().trim();
+  let splitInput = "";
+  let cmd;
+  let fileName;
+  if (input.includes(" ")) {
+    splitInput = input.split(" ");
+    cmd = splitInput[0];
+    fileName = splitInput[1];
+    console.log("split Input", splitInput);
+  } else {
+    cmd = input;
   }
-  const cmd = input[0].toString().trim();
-  const file = input[1]
+
   pwd(cmd);
   ls(cmd);
-  cat(cmd, file);
+  cat(cmd, fileName);
 });
